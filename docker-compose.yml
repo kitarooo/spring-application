@@ -8,4 +8,4 @@ services:
       - POSTGRES_DB=spring
     container_name: pgdb
     ports:
-      - 5435:5432
+      - "5435:5432"

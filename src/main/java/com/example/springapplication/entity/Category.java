@@ -14,4 +14,6 @@ public class Category {
     private Long id;
     @ManyToOne
     private Product product;
+    private String category_name;
+    private String category_description;
 }
