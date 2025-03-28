@@ -7,6 +7,8 @@ import com.example.springapplication.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -48,5 +50,28 @@ public class ProductServiceTest {
         assertEquals(100.0, savedProduct.getPrice());
         assertEquals(category, savedProduct.getCategory());
         verify(productRepository, times(1)).save(product);
+    }
+
+    /**
+     * Метод для тестирования логики поиска продукта
+     * */
+    @Test
+    void testПоискПоId() {
+        // Arrange
+        Long productId = 1L;
+        Product product = new Product();
+        product.setId(productId);
+        product.setName("Test Product");
+
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+
+        // Act
+        Product foundProduct = productService.findById(productId);
+
+        // Assert
+        assertNotNull(foundProduct);
+        assertEquals(productId, foundProduct.getId());
+        assertEquals("Test Product", foundProduct.getName());
+        verify(productRepository, times(1)).findById(productId);
     }
 }

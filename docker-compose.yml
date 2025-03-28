@@ -4,7 +4,7 @@ services:
     image: postgres:17-alpine
     environment:
       - POSTGRES_USER="seeyvfyvwb4kui57"
-      - POSTGRES_PASSWORD="UYFED7q3vu&$fe756YB9XWD"
+      - POSTGRES_PASSWORD="UYFED7q3vu&fe756YB9XWD"
       - POSTGRES_DB=spring
     container_name: pgdb
     ports:
