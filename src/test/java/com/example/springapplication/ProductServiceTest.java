@@ -37,8 +37,8 @@ public class ProductServiceTest {
         
         Category category = new Category();
         category.setId(1L);
-        category.setCategory_name("test");
-        category.setCategory_description("test");
+        category.setCategoryName("test");
+        category.setCategoryDescription("test");
         product.setCategory(category);
         when(productRepository.save(product)).thenReturn(product);
 
@@ -56,8 +56,7 @@ public class ProductServiceTest {
      * Метод для тестирования логики поиска продукта
      * */
     @Test
-    void testПоискПоId() {
-        // Arrange
+    void testFindById() {
         Long productId = 1L;
         Product product = new Product();
         product.setId(productId);
@@ -65,10 +64,8 @@ public class ProductServiceTest {
 
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
 
-        // Act
         Product foundProduct = productService.findById(productId);
 
-        // Assert
         assertNotNull(foundProduct);
         assertEquals(productId, foundProduct.getId());
         assertEquals("Test Product", foundProduct.getName());
